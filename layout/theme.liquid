@@ -4,6 +4,10 @@
   lang="{{ request.locale.iso_code }}"
 >
   <head>
+    
+    {% render 'grind-fonts' %}
+    <link rel="stylesheet" href="https://use.typekit.net/swo7fpw.css">
+    
     {%- render 'stylesheets' -%}
 
     {%- if settings.favicon != blank -%}
@@ -28,9 +32,13 @@
     {%- render 'theme-styles-variables' -%}
     {%- render 'color-schemes' -%}
 
+    {{ 'custom.css' | asset_url | stylesheet_tag }}
+
     {% if request.design_mode %}
       {%- render 'theme-editor' -%}
     {% endif %}
+
+    {{ 'custom.js' | asset_url | script_tag | replace: '<script', '<script defer' }}
 
     {{ content_for_header }}
   </head>
