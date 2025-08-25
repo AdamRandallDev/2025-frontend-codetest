@@ -1,0 +1,194 @@
+<div class="podsComparison container-sm">
+  {% if section.settings.title != blank %}
+    <h2>{{ section.settings.title }}</h2>
+  {% endif %}
+  <div class="podsComparison__selection" style="--background-color: {{ section.settings.selectionBackground }};">
+    {% for block in section.blocks %}
+      <button
+        class="{% if forloop.first %}is-active{% endif %}"
+        style=" --active-color: {{ section.settings.buttonColour }};"
+      >
+        {{ block.settings.name }}
+      </button>
+    {% endfor %}
+  </div>
+  <div class="podsComparison__cards">
+    {% for block in section.blocks %}
+      <div class="podCard {% if forloop.first %}is-active{% endif %}">
+        {% if block.settings.image != blank %}
+          {{
+            block.settings.image
+            | image_url: width: 512
+            | image_tag: alt: block.settings.name, class: 'podCard__image'
+          }}
+        {% endif %}
+        {% if block.settings.price != blank %}
+          <div class="podCard__price">
+            {% if block.settings.prePrice != blank %}
+              {{ block.settings.prePrice }}
+            {% endif %}
+            <span>{{ block.settings.price }}</span>
+            {% if block.settings.postPrice != blank %}
+              {{ block.settings.postPrice }}
+            {% endif %}
+          </div>
+        {% endif %}
+        <ul class="podCard__info {% if block.settings.is_positive %}positive{% else %}negative{% endif %}">
+          {% if block.settings.info1 != blank %}
+            <li>{{ block.settings.info1 }}</li>
+          {% endif %}
+          {% if block.settings.info2 != blank %}
+            <li>{{ block.settings.info2 }}</li>
+          {% endif %}
+          {% if block.settings.info3 != blank %}
+            <li>{{ block.settings.info3 }}</li>
+          {% endif %}
+          {% if block.settings.info4 != blank %}
+            <li>{{ block.settings.info4 }}</li>
+          {% endif %}
+        </ul>
+      </div>
+    {% endfor %}
+  </div>
+  {% if section.settings.cta != blank %}
+    <button class="podsComparison__cta">
+      {{ section.settings.cta }}
+    </button>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Pod Comparison",
+  "tag": "section",
+  "class": "podComparison",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Pod Title"
+    },
+    {
+      "type": "header",
+      "content": "Call To Action"
+    },
+    {
+      "type": "text",
+      "id": "cta",
+      "label": "CTA",
+      "default": "Buy Now"
+    },
+    {
+      "type": "header",
+      "content": "Selection Box"
+    },
+    {
+      "type": "color",
+      "id": "buttonColour",
+      "label": "Selected Button Colour",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "selectionBackground",
+      "label": "Background Color",
+      "default": "#ffffff"
+    }
+  ],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "name": "Pod Card",
+      "type": "pod-card",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Pod Name"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Pod Name",
+          "default": "Pod Name"
+        },
+        {
+          "type": "header",
+          "content": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "header",
+          "content": "Price"
+        },
+        {
+          "type": "text",
+          "id": "prePrice",
+          "label": "Pre Price",
+          "default": "From"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "£99.99"
+        },
+        {
+          "type": "text",
+          "id": "postPrice",
+          "label": "Post Price",
+          "default": "A Month"
+        },
+        {
+          "type": "header",
+          "content": "Info Blocks"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_positive",
+          "label": "Is Positive?",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "info1",
+          "label": "Info 1",
+          "default": "Info point 1"
+        },
+        {
+          "type": "text",
+          "id": "info2",
+          "label": "Info 2",
+          "default": "Info point 2"
+        },
+        {
+          "type": "text",
+          "id": "info3",
+          "label": "Info 3",
+          "default": "Info point 3"
+        },
+        {
+          "type": "text",
+          "id": "info4",
+          "label": "Info 4",
+          "default": "Info point 4"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pod Comparison",
+      "category": "Comparison"
+    }
+  ]
+}
+{% endschema %}

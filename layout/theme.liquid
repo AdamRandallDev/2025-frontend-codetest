@@ -4,10 +4,9 @@
   lang="{{ request.locale.iso_code }}"
 >
   <head>
-    
     {% render 'grind-fonts' %}
     <link rel="stylesheet" href="https://use.typekit.net/swo7fpw.css">
-    
+
     {%- render 'stylesheets' -%}
 
     {%- if settings.favicon != blank -%}
@@ -41,6 +40,9 @@
     {{ 'custom.js' | asset_url | script_tag | replace: '<script', '<script defer' }}
 
     {{ content_for_header }}
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
   </head>
 
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
@@ -74,5 +76,9 @@
     {% if settings.quick_add or settings.mobile_quick_add %}
       {% render 'quick-add-modal' %}
     {% endif %}
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js" defer></script>
+
+    {{ 'slick-init.js' | asset_url | script_tag }}
   </body>
 </html>

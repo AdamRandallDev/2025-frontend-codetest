@@ -1,4 +1,76 @@
 @charset "UTF-8";
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img,
+video {
+  height: auto;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+[hidden] {
+  display: none !important;
+}
+
 /*!
  * Bootstrap  v5.3.7 (https://getbootstrap.com/)
  * Copyright 2011-2025 The Bootstrap Authors
@@ -11855,6 +11927,193 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.podsComparison {
+  text-align: center;
+  overflow: hidden;
+}
+.podsComparison h2 {
+  font-size: 56px;
+  line-height: 1.1;
+  margin-bottom: 40px;
+}
+@media only screen and (max-width: 768px) {
+  .podsComparison h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+}
+.podsComparison__selection {
+  display: block;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 77px;
+  background-color: var(--background-color);
+  width: 90%;
+  margin: 0 auto 40px;
+}
+@media only screen and (max-width: 768px) {
+  .podsComparison__selection {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+}
+.podsComparison__selection button {
+  border-radius: 77px;
+  border: 0;
+  background-color: #ffffff;
+  font-size: 20px;
+  padding: 7px 20px;
+}
+.podsComparison__selection button.is-active {
+  background-color: var(--active-color);
+}
+@media only screen and (max-width: 768px) {
+  .podsComparison__selection button {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+}
+.podsComparison__cards {
+  display: flex;
+  justify-content: space-between;
+}
+@media only screen and (max-width: 768px) {
+  .podsComparison__cards .podCard {
+    margin: 0 5px;
+  }
+}
+.podsComparison__cards .podCard.is-active .podCard__image {
+  transform: scale(1.05) rotateZ(10deg);
+  transform-origin: center center;
+}
+@media only screen and (max-width: 768px) {
+  .podsComparison__cards .podCard.is-active .podCard__info,
+  .podsComparison__cards .podCard.is-active .podCard__price {
+    opacity: 1;
+  }
+}
+.podsComparison__cards .podCard__image {
+  display: block;
+  max-width: 192px;
+  width: 100%;
+  transition: all 0.3s ease;
+  margin: 0 auto 20px;
+}
+@media only screen and (max-width: 768px) {
+  .podsComparison__cards .podCard__image {
+    max-width: 320px;
+    margin: 0 auto 10px;
+  }
+}
+.podsComparison__cards .podCard__price {
+  display: flex;
+  flex-direction: column;
+  color: #6C6967;
+  font-size: 18px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+.podsComparison__cards .podCard__price span {
+  font-size: 32px;
+  color: #2D2926;
+  font-weight: bold;
+  line-height: 1;
+}
+@media only screen and (max-width: 768px) {
+  .podsComparison__cards .podCard__price {
+    font-size: 14px;
+    margin-bottom: 10px;
+    opacity: 0;
+  }
+  .podsComparison__cards .podCard__price span {
+    font-size: 24px;
+  }
+}
+.podsComparison__cards .podCard__info {
+  display: block;
+  padding: 0;
+  margin-bottom: 40px;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+@media only screen and (max-width: 768px) {
+  .podsComparison__cards .podCard__info {
+    font-size: 14px;
+    margin-bottom: 20px;
+    opacity: 0;
+  }
+}
+.podsComparison__cards .podCard__info li {
+  margin-bottom: 20px;
+}
+@media only screen and (max-width: 768px) {
+  .podsComparison__cards .podCard__info li {
+    margin-bottom: 10px;
+  }
+}
+.podsComparison__cards .podCard__info li:last-child {
+  margin-bottom: 0;
+}
+.podsComparison__cards .podCard__info li:before {
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: middle;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  line-height: 24px;
+}
+.podsComparison__cards .podCard__info.positive li:before {
+  content: url("icon-checkmark.svg");
+  background-color: #00B67A;
+}
+.podsComparison__cards .podCard__info.negative li:before {
+  content: url("icon-close.svg");
+  background-color: #E2265E;
+}
+.podsComparison__cta {
+  min-width: 250px;
+  width: auto;
+  height: 45px;
+  display: block;
+  border-radius: 5px;
+  color: #ffffff;
+  background-color: #2D2926;
+  border: 1px solid #2D2926;
+  transition: all 0.3s ease;
+  margin: 0 auto;
+  font-size: 20px;
+}
+.podsComparison__cta:hover {
+  background-color: #ffffff;
+  color: #2D2926;
+}
+.podsComparison .slick-list {
+  overflow: visible;
+}
+.podsComparison .slick-arrow {
+  background-color: #ffffff;
+}
+.podsComparison .slick-arrow.slick-next, .podsComparison .slick-arrow.slick-prev {
+  border-radius: 50%;
+  border: 1px solid #2D2926;
+  width: 24px;
+  height: 24px;
+  z-index: 1000;
+}
+.podsComparison .slick-arrow.slick-next::before, .podsComparison .slick-arrow.slick-prev::before {
+  content: url("icon-arrow.svg");
+}
+.podsComparison .slick-arrow.slick-next {
+  right: 15px;
+}
+.podsComparison .slick-arrow.slick-prev {
+  left: 15px;
+  transform: translate(0, -50%) rotate(180deg);
+  transform-origin: center center;
+}
+
 :root {
   --font-body--family: "ApercuPro", sans-serif;
   --font-heading--family: "argent-cf", sans-serif;

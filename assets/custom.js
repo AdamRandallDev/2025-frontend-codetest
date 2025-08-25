@@ -1584,14 +1584,14 @@
         const isRTL = () => document.documentElement.dir === "rtl";
         const defineJQueryPlugin = (plugin) => {
           onDOMContentLoaded(() => {
-            const $ = getjQuery();
-            if ($) {
+            const $2 = getjQuery();
+            if ($2) {
               const name = plugin.NAME;
-              const JQUERY_NO_CONFLICT = $.fn[name];
-              $.fn[name] = plugin.jQueryInterface;
-              $.fn[name].Constructor = plugin;
-              $.fn[name].noConflict = () => {
-                $.fn[name] = JQUERY_NO_CONFLICT;
+              const JQUERY_NO_CONFLICT = $2.fn[name];
+              $2.fn[name] = plugin.jQueryInterface;
+              $2.fn[name].Constructor = plugin;
+              $2.fn[name].noConflict = () => {
+                $2.fn[name] = JQUERY_NO_CONFLICT;
                 return plugin.jQueryInterface;
               };
             }
@@ -1821,16 +1821,16 @@
             if (typeof event !== "string" || !element) {
               return null;
             }
-            const $ = index_js.getjQuery();
+            const $2 = index_js.getjQuery();
             const typeEvent = getTypeEvent(event);
             const inNamespace = event !== typeEvent;
             let jQueryEvent = null;
             let bubbles = true;
             let nativeDispatch = true;
             let defaultPrevented = false;
-            if (inNamespace && $) {
-              jQueryEvent = $.Event(event, args);
-              $(element).trigger(jQueryEvent);
+            if (inNamespace && $2) {
+              jQueryEvent = $2.Event(event, args);
+              $2(element).trigger(jQueryEvent);
               bubbles = !jQueryEvent.isPropagationStopped();
               nativeDispatch = !jQueryEvent.isImmediatePropagationStopped();
               defaultPrevented = jQueryEvent.isDefaultPrevented();
@@ -3070,6 +3070,42 @@
   // src/scripts/index.js
   var import_dropdown = __toESM(require_dropdown());
   var import_modal = __toESM(require_modal());
+  var podCards = document.querySelectorAll(".podCard");
+  var btn = document.querySelectorAll(".podsComparison__selection button");
+  window.addEventListener("load", () => {
+    btn.forEach((button, i) => {
+      button.addEventListener("click", (e) => {
+        if (window.innerWidth < 768) {
+          $(".podsComparison__cards").slick("slickGoTo", i);
+        } else {
+          btn.forEach((btn2) => btn2.classList.remove("is-active"));
+          podCards.forEach((card) => card.classList.remove("is-active"));
+          button.classList.add("is-active");
+          podCards[i].classList.add("is-active");
+        }
+      });
+    });
+    if (window.innerWidth < 768) {
+      $(".podsComparison__cards").slick({
+        slidesToShow: 1,
+        centerMode: true,
+        centerPadding: "40px",
+        arrows: true,
+        dots: false,
+        infinite: true
+      });
+    }
+    $(".podsComparison__cards").on("afterChange", function(e, slick, currentIndex) {
+      changeActivePod(currentIndex);
+    });
+  });
+  function changeActivePod(index) {
+    const podCardsCloned = document.querySelectorAll(".podCard");
+    btn.forEach((btn2) => btn2.classList.remove("is-active"));
+    podCardsCloned.forEach((card) => card.classList.remove("is-active"));
+    btn[index].classList.add("is-active");
+    podCards[index].classList.add("is-active");
+  }
 })();
 /*! Bundled license information:
 

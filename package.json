@@ -7,7 +7,8 @@
     "build:css": "sass --load-path=node_modules src/styles/style.scss assets/custom.css --no-source-map --style=compressed",
     "build:js": "esbuild src/scripts/index.js --bundle --outfile=assets/custom.js --format=iife --minify",
     "build": "npm run build:css && npm run build:js",
-    "watch": "npm run build && (sass --load-path=node_modules --watch src/styles/style.scss:assets/custom.css & esbuild src/scripts/index.js --bundle --outfile=assets/custom.js --format=iife --watch)"
+    "watch": "npm run build && (sass --load-path=node_modules --watch src/styles/style.scss:assets/custom.css & esbuild src/scripts/index.js --bundle --outfile=assets/custom.js --format=iife --watch)",
+    "watchJS": "npm run build && esbuild src/scripts/index.js --bundle --outfile=assets/custom.js --format=iife --watch"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "bootstrap": "^5.3.7"
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.33",
     "esbuild": "^0.25.9",
     "sass": "^1.90.0"
   }

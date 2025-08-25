@@ -1,0 +1,228 @@
+@use '../vendor/bootstrap' as *;
+
+$color-black: #2D2926;
+$color-grey: #6C6967;
+$color-white: #ffffff;
+$color-pink: #E2265E;
+$color-green: #00B67A;
+
+.podsComparison {
+	text-align: center;
+	overflow: hidden;
+
+	h2 {
+		font-size: 56px;
+		line-height: 1.1;
+		margin-bottom: 40px;
+
+		@media only screen and (max-width: 768px) {
+			font-size: 32px;
+			margin-bottom: 20px;
+		}
+	}
+
+	&__selection {
+		display: block;
+		padding: 10px 20px;
+		display: flex;
+		justify-content: space-between;
+		border-radius: 77px;
+		background-color: var(--background-color);
+		width: 90%;
+		margin: 0 auto 40px;
+
+		@media only screen and (max-width: 768px) {
+			margin-bottom: 20px;
+			width: 100%;
+		}
+
+
+		button {
+			border-radius: 77px;
+			border: 0;
+			background-color: $color-white;
+			font-size: 20px;
+			padding: 7px 20px;
+
+			&.is-active {
+				background-color: var(--active-color);
+			}
+
+			@media only screen and (max-width: 768px) {
+				font-size: 12px;
+				padding: 5px 10px;
+			}
+		}
+	}
+
+	&__cards {
+		display: flex;
+		justify-content: space-between;
+
+		.podCard {
+			@media only screen and (max-width: 768px) {
+				margin: 0 5px;
+			}
+
+			&.is-active {
+				.podCard__image {
+					transform: scale(1.05) rotateZ(10deg);
+					transform-origin: center center;
+				}
+
+				@media only screen and (max-width: 768px) {
+
+					.podCard__info,
+					.podCard__price {
+						opacity: 1;
+					}
+				}
+			}
+
+			&__image {
+				display: block;
+				max-width: 192px;
+				width: 100%;
+				transition: all 0.3s ease;
+				margin: 0 auto 20px;
+
+				@media only screen and (max-width: 768px) {
+					max-width: 320px;
+					margin: 0 auto 10px;
+				}
+			}
+
+			&__price {
+				display: flex;
+				flex-direction: column;
+				color: $color-grey;
+				font-size: 18px;
+				margin-bottom: 20px;
+				transition: all 0.3s ease;
+
+				span {
+					font-size: 32px;
+					color: $color-black;
+					font-weight: bold;
+					line-height: 1;
+				}
+
+				@media only screen and (max-width: 768px) {
+					font-size: 14px;
+					margin-bottom: 10px;
+					opacity: 0;
+
+					span {
+						font-size: 24px;
+					}
+				}
+			}
+
+			&__info {
+				display: block;
+				padding: 0;
+				margin-bottom: 40px;
+				font-size: 18px;
+				transition: all 0.3s ease;
+
+				@media only screen and (max-width: 768px) {
+					font-size: 14px;
+					margin-bottom: 20px;
+					opacity: 0;
+				}
+
+				li {
+					margin-bottom: 20px;
+
+					@media only screen and (max-width: 768px) {
+						margin-bottom: 10px;
+					}
+
+					&:last-child {
+						margin-bottom: 0;
+					}
+
+					&:before {
+						display: inline-block;
+						margin-right: 6px;
+						vertical-align: middle;
+						border-radius: 50%;
+						height: 20px;
+						width: 20px;
+						line-height: 24px;
+
+					}
+				}
+
+				&.positive {
+					li {
+						&:before {
+							content: url("icon-checkmark.svg");
+							background-color: $color-green;
+						}
+					}
+				}
+
+				&.negative {
+					li {
+						&:before {
+							content: url("icon-close.svg");
+							background-color: $color-pink;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&__cta {
+		min-width: 250px;
+		width: auto;
+		height: 45px;
+		display: block;
+		border-radius: 5px;
+		color: $color-white;
+		background-color: $color-black;
+		border: 1px solid $color-black;
+		transition: all 0.3s ease;
+		margin: 0 auto;
+		font-size: 20px;
+
+		&:hover {
+			background-color: $color-white;
+			color: $color-black;
+		}
+	}
+
+	.slick-list {
+		overflow: visible;
+	}
+
+	.slick-arrow {
+		background-color: $color-white;
+
+		&.slick-next,
+		&.slick-prev {
+			border-radius: 50%;
+			border: 1px solid $color-black;
+			width: 24px;
+			height: 24px;
+			z-index: 1000;
+
+			&::before {
+				content: url("icon-arrow.svg");
+			}
+		}
+
+		&.slick-next {
+			right: 15px;
+
+		}
+
+		&.slick-prev {
+			left: 15px;
+			transform: translate(0, -50%) rotate(180deg);
+			transform-origin: center center;
+		}
+	}
+}
